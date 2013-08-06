@@ -4,7 +4,7 @@ from tornado.websocket import WebSocketHandler
 
 class Broadcaster(object):
     
-    _instance
+    _instance = None
         
     @staticmethod
     def get_instance():
@@ -36,7 +36,7 @@ class Broadcaster(object):
         
 
 class BroadcasterProxy(WebSocketHandler):
-    broadcaster = Broasdcaster.get_instance()
+    broadcaster = Broadcaster.get_instance()
     
     def open(self):
         BroadcasterProxy.broadcaster.add(self)
